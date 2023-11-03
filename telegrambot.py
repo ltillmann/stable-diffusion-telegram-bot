@@ -37,8 +37,6 @@ from rq.job import Job
 from arq import create_pool
 from arq.connections import RedisSettings
 # add functions, database, config
-#from img2img import undress
-from text2img import generate
 from keyboards import *
 from queue_handler import queue_request, turnover_request
 from watermark import apply_watermark
