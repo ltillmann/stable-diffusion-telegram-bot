@@ -17,7 +17,7 @@ class DBHelper:
 
     def setup(self):
 
-        print(f"{datetime.now().isoformat(' ', 'seconds')} Initiating SQLite3 table...\n")
+        print(f"{datetime.now().isoformat(' ', 'seconds')} Initiating SQLite3 DB...\n")
 
         self.cur.execute('''CREATE TABLE IF NOT EXISTS users (
             id             INTEGER UNIQUE NOT NULL,
@@ -33,65 +33,6 @@ class DBHelper:
         self.locCon.commit()
 
 
-    """
-    def add_v_transaction(source, hash, value, comment):
-        cur.execute("INSERT INTO transactions (source, hash, value, comment) VALUES (?, ?, ?, ?)",
-                    (source, hash, value, comment))
-        locCon.commit()
-    
-    
-    
-    def check_transaction(hash):
-        cur.execute(f"SELECT hash FROM transactions WHERE hash = '{hash}'")
-        result = cur.fetchone()
-        if result:
-            return True
-        return False
-    
-    
-    
-    
-    
-    def v_wallet(user_id, wallet):
-        cur.execute(f"SELECT wallet FROM users WHERE id = '{user_id}'")
-        result = cur.fetchone()
-        if result[0] == "none":
-            cur.execute(
-                f"UPDATE users SET wallet = '{wallet}' WHERE id = '{user_id}'")
-            locCon.commit()
-            return True
-        else:
-            return result[0]
-    
-    
-    def get_user_wallet(user_id):
-        cur.execute(f"SELECT wallet FROM users WHERE id = '{user_id}'")
-        result = cur.fetchone()
-        return result[0]
-    
-    
-    def get_user_payments(user_id):
-        wallet = get_user_wallet(user_id)
-    
-        if wallet == "none":
-            return "You have no wallet"
-        else:
-            cur.execute(f"SELECT * FROM transactions WHERE source = '{wallet}'")
-            result = cur.fetchall()
-            tdict = {}
-            tlist = []
-            try:
-                for transaction in result:
-                    tdict = {
-                        "value": transaction[2],
-                        "comment": transaction[3],
-                    }
-                    tlist.append(tdict)
-                return tlist
-    
-            except:
-                return False
-    """
 
     
     def check_user(self, user_id, username, first_name):
@@ -148,7 +89,6 @@ class DBHelper:
 
         return result
 
-
     def update_tokens(self, user_id, token_amount):
         try:
             self.cur.execute(f"UPDATE users SET tokens = tokens + '{token_amount}' WHERE id = '{user_id}'")
@@ -156,7 +96,6 @@ class DBHelper:
 
         except Exception as e:
             print(e)
-
 
     def writeoff_token(self, user_id):
         try:
