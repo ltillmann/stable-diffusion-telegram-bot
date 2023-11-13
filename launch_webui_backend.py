@@ -20,7 +20,7 @@ def main():
 							  "--lowvram "
 							  "--allow-code "
 							  #"--gradio-queue "
-							  #"--controlnet-dir /Users/Lukas/Desktop/stablediff/stable-diffusion-webui/extensions/sd-webui-controlnet/models "
+							  #"--controlnet-dir stable-diffusion-webui/extensions/sd-webui-controlnet/models "
 							  #"--no-half-controlnet "
 							  "--ckpt-dir file.safetensors" # add your checkpoint path
 							  ],
